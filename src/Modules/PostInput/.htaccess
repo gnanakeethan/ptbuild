@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteRule ^git/phpengine/ptbuild/$ /index.php?control=GitServer&action=serve&item=ptbuild
+RewriteRule ^git/phpengine/ptbuild$ /index.php?control=GitServer&action=serve&item=ptbuild
+RewriteRule ^git/(.*)/(.*)$ index.php?control=GitServer&action=serve&repo_path=$0 [NC]
+#Rewrite for Git Clones
+RewriteCond %{QUERY_STRING} ^(\w+)=(\w+)$
+RewriteRule ^(?:git|scm)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)$ index.php?control=GitServer&action=serve&item=$1&user=$0&git_query=$2/$3?%1=%2
+
